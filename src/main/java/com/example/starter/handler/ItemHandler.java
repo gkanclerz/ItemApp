@@ -20,7 +20,7 @@ public class ItemHandler {
       })
       .onFailure(fail -> {
         context.response().setStatusCode(500).end();
-        System.out.println(fail.getCause());
+        fail.printStackTrace();
       });
   }
 
@@ -31,6 +31,9 @@ public class ItemHandler {
         context.response().setStatusCode(200)
           .end(success.toString());
       })
-      .onFailure(Throwable::printStackTrace);
+      .onFailure(fail -> {
+        context.response().setStatusCode(500).end();
+        fail.printStackTrace();
+      });
   }
 }

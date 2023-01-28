@@ -14,15 +14,9 @@ public class UserRouter {
     this.vertx = vertx;
     this.userHandler = userHandler;
   }
-
-  public void setRouter(Router router){
-    router.mountSubRouter("/", buildUserRouter());
-  }
-
-  private Router buildUserRouter(){
+  public Router buildUserRouter(){
     final Router userRouter = Router.router(vertx);
 
-    userRouter.route().handler(BodyHandler.create());
     userRouter.post("/register").handler(userHandler::registerUser);
     userRouter.post("/login").handler(userHandler::loginUser);
 

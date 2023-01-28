@@ -19,16 +19,12 @@ public class ItemRouter {
     this.jwtAuthHandler = jwtAuthHandler;
   }
 
-  public void setRouter(Router router){
-    router.mountSubRouter("/items", buildItemRouter());
-  }
-
-  private Router buildItemRouter() {
+  public Router buildItemRouter() {
     final Router itemRouter = Router.router(vertx);
 
     itemRouter.route().handler(BodyHandler.create());
-    itemRouter.post().handler(JWTAuthHandler.create(jwtAuthHandler.createJwtAuth())).handler(itemHandler::addItem);
-    itemRouter.get().handler(JWTAuthHandler.create(jwtAuthHandler.createJwtAuth())).handler(itemHandler::getItems);
+    itemRouter.post("/items").handler(JWTAuthHandler.create(jwtAuthHandler.createJwtAuth())).handler(itemHandler::addItem);
+    itemRouter.get("/items").handler(JWTAuthHandler.create(jwtAuthHandler.createJwtAuth())).handler(itemHandler::getItems);
 
     return itemRouter;
   }

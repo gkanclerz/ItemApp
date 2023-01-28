@@ -27,6 +27,7 @@ public class UserHandler {
       })
       .onFailure(fail -> {
         context.response().setStatusCode(500).end();
+        fail.printStackTrace();
       });
   }
 
@@ -40,6 +41,9 @@ public class UserHandler {
             context.response().setStatusCode(406).setStatusMessage("Login or password wrong").end();
           }
       })
-      .onFailure(fail -> context.response().setStatusCode(500).end());
+      .onFailure(fail -> {
+        context.response().setStatusCode(500).end();
+        fail.printStackTrace();
+      });
   }
 }

@@ -37,8 +37,8 @@ public class ApiVerticle extends AbstractVerticle {
     final ItemRouter itemRouter = new ItemRouter(vertx,itemHandler, jwtAuthHandler);
 
     final Router router = Router.router(vertx);
-    itemRouter.setRouter(router);
-    userRouter.setRouter(router);
+    router.route().subRouter(itemRouter.buildItemRouter());
+    router.route().subRouter(userRouter.buildUserRouter());
 
     vertx.createHttpServer().requestHandler(router).listen(3000, http -> {
       if (http.succeeded()) {
