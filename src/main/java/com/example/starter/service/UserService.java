@@ -34,13 +34,13 @@ public class UserService {
             logger.info("User id: " + user.getString("_id") + " saved");
           })
             .onFailure(fa -> {
-              logger.info("Repository error");
+              logger.error("Repository error");
             });
         } else {
           logger.info("The user with the given name already exists");
         }
       })
-      .onFailure(fail -> logger.info("Server error"));
+      .onFailure(fail -> logger.error("Server error"));
   }
 
   public Future<JsonObject> loginUser(JsonObject user){

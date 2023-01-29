@@ -1,15 +1,11 @@
 package com.example.starter.service;
 
-import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.KeyStoreOptions;
-import io.vertx.ext.auth.User;
-import io.vertx.ext.auth.authentication.AuthenticationProvider;
 import io.vertx.ext.auth.jwt.JWTAuth;
 import io.vertx.ext.auth.jwt.JWTAuthOptions;
 
-import java.util.Arrays;
 
 public class JwtAuthService {
 

@@ -9,7 +9,7 @@ public class UserRepository {
 
   private final MongoClient mongoClient;
 
-  public UserRepository(Vertx vertx, MongoClient mongoClient) {
+  public UserRepository(MongoClient mongoClient) {
     this.mongoClient = mongoClient;
   }
 

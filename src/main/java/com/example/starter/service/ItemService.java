@@ -30,11 +30,11 @@ public class ItemService {
           .put("owner", success.getString("_id"))
           .put("name", name);
         itemRepository.save(item).onSuccess(suc -> {
-          logger.info("Item " + suc + " saved");
+          logger.info("Item saved");
         })
           .onFailure(f -> {
             f.printStackTrace();
-            logger.info("Repository error");
+            logger.error("Repository error");
           });
       });
 
@@ -46,6 +46,9 @@ public class ItemService {
         .onSuccess(success -> {
           logger.info("User " + username + " get items");
         })
-        .onFailure(Throwable::printStackTrace));
+        .onFailure(throwable -> {
+          throwable.printStackTrace();
+          logger.error("Repository error");
+        }));
   }
 }

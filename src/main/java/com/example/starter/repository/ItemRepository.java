@@ -3,6 +3,7 @@ package com.example.starter.repository;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
+import io.vertx.ext.mongo.FindOptions;
 import io.vertx.ext.mongo.MongoClient;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class ItemRepository {
 
   private final MongoClient mongoClient;
 
-  public ItemRepository(Vertx vertx, MongoClient mongoClient) {
+  public ItemRepository(MongoClient mongoClient) {
     this.mongoClient = mongoClient;
   }
   public Future<String> save(JsonObject item) {

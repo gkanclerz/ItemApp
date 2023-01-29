@@ -29,13 +29,13 @@ public class ApiVerticle extends AbstractVerticle {
     final JwtAuthService jwtAuthService = new JwtAuthService(vertx);
     final JwtAuthHandler jwtAuthHandler = new JwtAuthHandler(jwtAuthService);
 
-    final UserRepository userRepository = new UserRepository(vertx,mongoClient);
+    final UserRepository userRepository = new UserRepository(mongoClient);
     final UserService userService = new UserService(userRepository, jwtAuthService);
     final UserHandler userHandler = new UserHandler(userService);
     final UserValidationHandler userValidationHandler = new UserValidationHandler(vertx);
     final UserRouter userRouter = new UserRouter(vertx,userHandler, userValidationHandler);
 
-    final ItemRepository itemRepository = new ItemRepository(vertx,mongoClient);
+    final ItemRepository itemRepository = new ItemRepository(mongoClient);
     final ItemService itemService = new ItemService(itemRepository,userRepository);
     final ItemHandler itemHandler = new ItemHandler(itemService);
     final ItemValidationHandler itemValidationHandler = new ItemValidationHandler(vertx);
